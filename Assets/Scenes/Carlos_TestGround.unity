@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 467921304}
   - component: {fileID: 467921303}
   - component: {fileID: 467921307}
+  - component: {fileID: 467921308}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -278,7 +279,7 @@ Transform:
   m_GameObject: {fileID: 467921302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.67287, y: 5.67287, z: 5.67287}
+  m_LocalScale: {x: 15.099479, y: 15.099479, z: 15.099479}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -919,6 +920,20 @@ MonoBehaviour:
   m_SkinMeshRef: {fileID: 0}
   m_OriginalMeshObject: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
   m_Mode: 0
+--- !u!114 &467921308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467921302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9611096e28895124d9dfe741e589c281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 1
+  visualizeInEditor: 0
 --- !u!43 &612361953
 Mesh:
   m_ObjectHideFlags: 0
@@ -2350,7 +2365,7 @@ Mesh:
     m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0, y: 0.022795131, z: 0}
-    m_Extent: {x: 5, y: 0.022795131, z: 5}
+    m_Extent: {x: 5, y: 5, z: 5}
   m_MeshUsageFlags: 0
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
@@ -5688,7 +5703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948287120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.81689835, y: 21.11591, z: -32.34958}
+  m_LocalPosition: {x: -0.81689835, y: 33.57, z: -65.18}
   m_LocalScale: {x: 24.357618, y: 24.357618, z: 24.357618}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5706,6 +5721,9 @@ GameObject:
   - component: {fileID: 2127113020}
   - component: {fileID: 2127113019}
   - component: {fileID: 2127113018}
+  - component: {fileID: 2127113023}
+  - component: {fileID: 2127113022}
+  - component: {fileID: 2127113021}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5771,11 +5789,98 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127113017}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.5037688, y: -0, z: -0, w: 0.8638385}
+  m_LocalPosition: {x: 0, y: 17.39, z: -38.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60.499, y: 0, z: 0}
+--- !u!114 &2127113021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127113017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2651a4c7e50c3274bb02a1b6c03b054b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bendType: 5
+  bendID: 1
+  bendPivotPoint: {fileID: 2127113020}
+  bendPivotPointPosition: {x: 0, y: 17.39, z: -38.99}
+  bendRotationCenter: {fileID: 0}
+  bendRotationCenterPosition: {x: 0, y: 0, z: 0}
+  bendRotationAxis: {x: 0, y: 0, z: 0}
+  bendRotationAxisType: 0
+  bendRotationCenter2: {fileID: 0}
+  bendRotationCenter2Position: {x: 0, y: 0, z: 0}
+  bendVerticalSize: 0
+  bendVerticalOffset: 0
+  bendHorizontalSize: 0
+  bendHorizontalOffset: 0
+  bendCurvatureSize: 6.82
+  bendCurvatureOffset: 0
+  bendAngle: 0
+  bendAngle2: 0
+  bendMinimumRadius: 0
+  bendMinimumRadius2: 0
+  bendRolloff: 0
+  disableInEditor: 0
+  manualUpdate: 0
+  isExpanded: 1
+--- !u!114 &2127113022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127113017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27fec5cae7b257341a91ca046321b6eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matrixType: 0
+  fieldOfView: 140
+  size: 5
+  nearClipPlaneSameAsCamera: 1
+  nearClipPlane: 0.3
+  visualizeInEditor: 0
+--- !u!114 &2127113023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127113017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
