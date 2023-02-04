@@ -8,7 +8,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float m_Jump = 5f;
 
     [SerializeField] private float m_Deadzone = .1f;
-
+    [SerializeField] private float m_Drag = 3;
+    
     private bool m_CanJump = true;
 
     // Update is called once per frame
@@ -26,7 +27,15 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            m_RB.velocity -= m_RB.velocity * Time.deltaTime * 4;
+            var curVel = m_RB.velocity;
+            if (curVel.magnitude > 1)
+            {
+                m_RB.velocity = curVel * (1 - Time.deltaTime * m_Drag);
+            }
+            else
+            {
+                m_RB.velocity = curVel.normalized * (curVel.magnitude * curVel.magnitude * curVel.magnitude * curVel.magnitude);
+            }
         }
     }
 
