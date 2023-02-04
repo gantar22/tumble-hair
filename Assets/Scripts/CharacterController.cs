@@ -125,4 +125,9 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+
+    public void Bounce(float inBounce)
+    {
+        m_RB.velocity += new Vector3(0f, inBounce, 0f);
+    }
 }
