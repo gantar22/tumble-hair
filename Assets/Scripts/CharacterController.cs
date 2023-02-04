@@ -18,6 +18,9 @@ public class CharacterController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && m_CanJump)
         {
             m_RB.velocity += new Vector3(0f, m_Jump, 0f);
+        } else if (m_RB.velocity.y < -.1f)
+        {
+            m_RB.velocity -= Physics.gravity * (Time.deltaTime * m_RB.mass);
         }
 
         var input = Vector3.right * Input.GetAxis("Horizontal") + Vector3.forward * Input.GetAxis("Vertical");
@@ -27,15 +30,21 @@ public class CharacterController : MonoBehaviour
         }
         else
         {
-            var curVel = m_RB.velocity;
-            if (curVel.magnitude > 1)
-            {
-                m_RB.velocity = curVel * (1 - Time.deltaTime * m_Drag);
-            }
-            else
-            {
-                m_RB.velocity = curVel.normalized * (curVel.magnitude * curVel.magnitude * curVel.magnitude * curVel.magnitude);
-            }
+            var planeVelocity = Vector3.ProjectOnPlane(m_RB.velocity,Vector3.up);
+            planeVelocity = ApplyDrag(planeVelocity);
+            m_RB.velocity = planeVelocity + Vector3.up * m_RB.velocity.y;
+        }
+    }
+
+    Vector3 ApplyDrag(Vector3 velocity)
+    {
+        if (velocity.magnitude > 1)
+        {
+            return velocity * (1 - Time.deltaTime * m_Drag);
+        }
+        else
+        {
+            return velocity.normalized * (velocity.magnitude * velocity.magnitude * velocity.magnitude * velocity.magnitude);
         }
     }
 
