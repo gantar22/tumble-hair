@@ -15,6 +15,8 @@ public class CharacterController : MonoBehaviour
     private float m_SpeedBoostDuration = 0f;
     private float m_CurrSpeed = 1f;
     private bool m_Boost = false;
+    private bool m_IsSliding = false;
+    private Vector3 m_SlideVector;
 
     private void Start()
     {
@@ -23,14 +25,22 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
+        if (m_IsSliding)//Only occurs when entering a grease puddle.
+        {
+            m_RB.velocity = m_SlideVector;
+            return;
+        }
+
+        //Jump
         if (Input.GetKeyDown(KeyCode.Space) && m_CanJump)
         {
             m_RB.velocity += new Vector3(0f, m_Jump, 0f);
         } else if (m_RB.velocity.y < -.1f)
         {
-            m_RB.velocity -= Physics.gravity * (Time.deltaTime * m_RB.mass); //This still makes jumping take forever to land. Feels better without it.
+            m_RB.velocity += Physics.gravity * (Time.deltaTime * m_RB.mass);
         }
 
+        //Movement
         var input = Vector3.right * Input.GetAxis("Horizontal") + Vector3.forward * Input.GetAxis("Vertical");
         if (input.magnitude > m_Deadzone)
         {
@@ -43,6 +53,7 @@ public class CharacterController : MonoBehaviour
             m_RB.velocity = planeVelocity + Vector3.up * m_RB.velocity.y;
         }
 
+        //Speed boost
         if(m_Boost)
         {
             if (m_SpeedBoostTimer >= m_SpeedBoostDuration)
@@ -69,6 +80,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    //Ground checking for jumping
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Ground"))
@@ -91,6 +103,21 @@ public class CharacterController : MonoBehaviour
         m_SpeedBoostDuration = inDur;
         m_SpeedBoostTimer = 0;
         m_CurrSpeed = m_Speed * inMult;
+    }
+
+    public void Slide(bool inSlide, float inSlideMult)
+    {
+        m_IsSliding = inSlide;
+        m_SlideVector = new Vector3(m_RB.velocity.x * inSlideMult,m_RB.velocity.y,m_RB.velocity.z * inSlideMult);
+
+        if(m_IsSliding)
+        {
+            m_RB.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+        else
+        {
+            m_RB.constraints = RigidbodyConstraints.None;
+        }
     }
 
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Flea : MonoBehaviour
@@ -12,7 +10,6 @@ public class Flea : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            //Add speed up
             var player = collision.collider.GetComponent<CharacterController>();
             player.SpeedBoost(m_SpeedMult,m_Duration);
             Destroy(this.gameObject);
