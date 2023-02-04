@@ -8,6 +8,7 @@ public interface ILouse
     public bool isAlive { get; }
 
     public void Spawn(Vector3 position);
+    public Vector3 position { get; }
 }
 
 public class Louse : MonoBehaviour, ILouse
@@ -24,6 +25,8 @@ public class Louse : MonoBehaviour, ILouse
     {
         
     }
+
+    public Vector3 position => transform.position;
     
     private void OnCollisionEnter(Collision collision)
     {
