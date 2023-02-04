@@ -12,20 +12,27 @@ public class Chunk : MonoBehaviour
 
     public ILouse[] lice = default;
     private Vector3[] liceSpawnPoints = default;
+    
 
-    private Random random = new Random();
-    void Commence()
+    public void Commence()
     {
         StartCoroutine(SpawnLice());
     }
 
+    float HairFill()//0-1
+    {
+        return folicules.Sum(_=>_.height) / folicules.Length;
+    }
+
     IEnumerator SpawnLice()
     {
+        var random = new Random(gameObject.GetInstanceID());
         while (true)
         {
             yield return new WaitForSeconds(1/tuningAsset.louseSpawnTickRate);
-            double p = 1 / (tuningAsset.louseSpawnTime * tuningAsset.louseSpawnTickRate);
-            if (random.NextDouble() > p)
+            var expectedTicks = tuningAsset.louseSpawnTime * tuningAsset.louseSpawnTickRate;
+            double p = HairFill() / expectedTicks;
+            if (random.NextDouble() < p)
             {
                 for (int i = 0; i < lice.Length; i++)
                 {

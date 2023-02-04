@@ -14,5 +14,5 @@ public class MasterTuningSO : ScriptableObject
     [SerializeField, Tooltip("How often scratch calculations are made")]
     public float handScratchTickRate;
     [SerializeField, Tooltip("Expected time to spawn a hand stritch per louse")]
-    public float handScratchRate = 10;
+    public float handScratchTime = 10;
 }
