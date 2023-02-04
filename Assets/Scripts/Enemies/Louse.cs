@@ -19,11 +19,12 @@ public class Louse : MonoBehaviour, ILouse
     private UnityEvent<Vector3> m_OnDeath;
     public UnityEvent<Vector3> OnDeath => m_OnDeath;
 
-    public bool isAlive { get; private set; }
+    public bool isAlive { get => gameObject.activeSelf;}
 
     public void Spawn(Vector3 position)
     {
-        
+        transform.position = position;
+        gameObject.SetActive(true);
     }
 
     public Vector3 position => transform.position;
@@ -32,13 +33,10 @@ public class Louse : MonoBehaviour, ILouse
     {
         if (collision.collider.CompareTag("Player"))
         {
-            Destroy(this.gameObject);
+            AudioManager.I.PlayOneShot(m_DeathSFX);
+            gameObject.SetActive(false);
+            m_OnDeath?.Invoke(transform.position);
+            m_OnDeath.RemoveAllListeners();
         }
     }
-
-    private void OnDestroy()
-    {
-        m_OnDeath?.Invoke(transform.position);
-    }
-
 }
