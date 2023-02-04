@@ -496,7 +496,7 @@
     "m_FragmentContext": {
         "m_Position": {
             "x": 1514.0,
-            "y": 993.0
+            "y": 1000.0
         },
         "m_Blocks": [
             {
@@ -3200,7 +3200,7 @@
     "m_RenderFace": 2,
     "m_AlphaClip": false,
     "m_CastShadows": true,
-    "m_ReceiveShadows": false,
+    "m_ReceiveShadows": true,
     "m_CustomEditorGUI": "",
     "m_SupportVFX": false
 }
