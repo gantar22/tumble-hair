@@ -23,7 +23,7 @@ public class CharacterController : MonoBehaviour
             m_RB.velocity = input * m_Speed;
         else
         {
-            m_RB.velocity -= m_RB.velocity * Time.deltaTime;
+            m_RB.velocity -= m_RB.velocity * Time.deltaTime * 4;
         }
     }
 }
