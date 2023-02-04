@@ -272,6 +272,8 @@ void CurvedWorld_LittlePlanet_X(inout float4 inVertexOS, inout float3 normalOS, 
 	normalOS = CurvedWorld_WorldToObjectNormal(normalize(cross(v2 - v0, v1 - v0)));
 }
 
+
+
 void CurvedWorld_LittlePlanet_Y(inout float4 inVertexOS, float3 pivotPoint, float bendSize, float bendOffset)
 {
 	float3 positionWS = CurvedWorld_ObjectToWorld(inVertexOS);
