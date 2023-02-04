@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class HandManager : MonoBehaviour
 {
+    [SerializeField] private MasterTuningSO tuningAsset = default;
     public static HandManager I;
     public IHand[] hands = default;
 
@@ -21,11 +22,17 @@ public class HandManager : MonoBehaviour
         }
     }
 
-    public void Summon(Vector3 location, float duration)
+    public bool Summon(Vector3 target)
     {
-        var hand = hands.FirstOrDefault(_ => _.isActive);
-        if(hand != null)
-            StartCoroutine(SummonImpl(location,hand,duration));
+        var hand = hands.FirstOrDefault(_ => _.activeTarget(out var _));
+        if (hand == null)
+            return false;
+        if (hands.Any(_ =>
+                _.activeTarget(out var existingTarget) &&
+                Vector3.Distance(existingTarget, target) < tuningAsset.handZoneRadius))
+            return false;
+        StartCoroutine(SummonImpl(target,hand,tuningAsset.handScratchDuration));
+        return true;
     }
 
     IEnumerator SummonImpl(Vector3 location,IHand hand,float duration)
