@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
@@ -9,7 +10,9 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] private float m_Deadzone = .1f;
     [SerializeField] private float m_Drag = 3;
+    [SerializeField,Range(0,1)] private float m_JumpVelFactor = .25f;
     
+    [SerializeField]
     private bool m_CanJump = true;
     private float m_SpeedBoostTimer = 0f;
     private float m_SpeedBoostDuration = 0f;
@@ -44,12 +47,16 @@ public class CharacterController : MonoBehaviour
         var input = Vector3.right * Input.GetAxis("Horizontal") + Vector3.forward * Input.GetAxis("Vertical");
         if (input.magnitude > m_Deadzone)
         {
-            m_RB.velocity = new Vector3(input.x * m_CurrSpeed,m_RB.velocity.y, input.z * m_CurrSpeed);
+            var desiredVel = new Vector3(input.x * m_CurrSpeed, m_RB.velocity.y, input.z * m_CurrSpeed);
+            if (m_CanJump)
+                m_RB.velocity = desiredVel;
+            else
+                m_RB.velocity = Vector3.Lerp(m_RB.velocity, desiredVel, m_JumpVelFactor);
         }
         else
         {
             var planeVelocity = Vector3.ProjectOnPlane(m_RB.velocity,Vector3.up);
-            planeVelocity = ApplyDrag(planeVelocity);
+            planeVelocity = ApplyDrag(planeVelocity, m_Drag * (m_CanJump ? 1 : m_JumpVelFactor));
             m_RB.velocity = planeVelocity + Vector3.up * m_RB.velocity.y;
         }
 
@@ -68,11 +75,11 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    Vector3 ApplyDrag(Vector3 velocity)
+    Vector3 ApplyDrag(Vector3 velocity,float drag)
     {
         if (velocity.magnitude > 1)
         {
-            return velocity * (1 - Time.deltaTime * m_Drag);
+            return velocity * (1 - Time.deltaTime * drag);
         }
         else
         {

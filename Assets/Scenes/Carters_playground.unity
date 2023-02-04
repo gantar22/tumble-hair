@@ -4597,7 +4597,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 9f24fd32ea302d14f9248e9813ccf92c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4635,7 +4635,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215538078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.74, y: 6.9, z: -4.4}
+  m_LocalPosition: {x: 9.74, y: 11.67, z: -4.4}
   m_LocalScale: {x: 7.07, y: 1, z: 19.13}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5934,9 +5934,11 @@ GameObject:
   - component: {fileID: 297190004}
   - component: {fileID: 297190003}
   - component: {fileID: 297190002}
+  - component: {fileID: 297190006}
+  - component: {fileID: 297190005}
   m_Layer: 0
   m_Name: Plane (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5961,7 +5963,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0b8befd6a4250964a9f166ea1ec00ea2, type: 2}
+  - {fileID: 2100000, guid: cbacca0cfdd79124eb96b835aae453a5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6006,6 +6008,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &297190005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297190001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9611096e28895124d9dfe741e589c281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 3
+  visualizeInEditor: 0
+--- !u!65 &297190006
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297190001}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1320502, y: 1.13205, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &298150542 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7964180151661069782, guid: c7ac13d7e13fd404f8be881b6aa96b87,
@@ -8631,6 +8660,7 @@ GameObject:
   - component: {fileID: 420910274}
   - component: {fileID: 420910273}
   - component: {fileID: 420910272}
+  - component: {fileID: 420910275}
   m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
@@ -8718,6 +8748,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420910270}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &420910275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420910270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9611096e28895124d9dfe741e589c281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 1
+  visualizeInEditor: 1
 --- !u!1001 &421769110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18076,7 +18120,8 @@ GameObject:
   - component: {fileID: 934317639}
   - component: {fileID: 934317638}
   - component: {fileID: 934317642}
-  - component: {fileID: 934317641}
+  - component: {fileID: 934317644}
+  - component: {fileID: 934317643}
   m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -18150,20 +18195,6 @@ Transform:
   m_Father: {fileID: 2072011249}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 37.03, y: 0, z: 0}
---- !u!114 &934317641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934317637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb3725ac11ed340faa37dc53fa0c57c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enablePlanet: 1
-  bendingAmount: 0.015
 --- !u!114 &934317642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18197,6 +18228,60 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &934317643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934317637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2651a4c7e50c3274bb02a1b6c03b054b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bendType: 5
+  bendID: 1
+  bendPivotPoint: {fileID: 2072011249}
+  bendPivotPointPosition: {x: 9.74, y: 0.552, z: -4.4}
+  bendRotationCenter: {fileID: 0}
+  bendRotationCenterPosition: {x: 0, y: 0, z: 0}
+  bendRotationAxis: {x: 0, y: 0, z: 0}
+  bendRotationAxisType: 0
+  bendRotationCenter2: {fileID: 0}
+  bendRotationCenter2Position: {x: 0, y: 0, z: 0}
+  bendVerticalSize: 0
+  bendVerticalOffset: 0
+  bendHorizontalSize: 0
+  bendHorizontalOffset: 0
+  bendCurvatureSize: 9
+  bendCurvatureOffset: 0
+  bendAngle: 0
+  bendAngle2: 0
+  bendMinimumRadius: 0
+  bendMinimumRadius2: 0
+  bendRolloff: 0
+  disableInEditor: 0
+  manualUpdate: 0
+  isExpanded: 1
+--- !u!114 &934317644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934317637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27fec5cae7b257341a91ca046321b6eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matrixType: 0
+  fieldOfView: 140
+  size: 5
+  nearClipPlaneSameAsCamera: 1
+  nearClipPlane: 0.3
+  visualizeInEditor: 1
 --- !u!1001 &938245319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38554,7 +38639,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &2072011251
 MonoBehaviour:
@@ -38570,9 +38655,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RB: {fileID: 2072011250}
   m_Speed: 15
-  m_Jump: 5
+  m_Jump: 12
   m_Deadzone: 0.1
   m_Drag: 10
+  m_JumpVelFactor: 0.2
+  m_CanJump: 1
 --- !u!4 &2072706552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7964180151661069782, guid: c7ac13d7e13fd404f8be881b6aa96b87,

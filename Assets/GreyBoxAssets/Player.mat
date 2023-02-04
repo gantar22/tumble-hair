@@ -21,15 +21,17 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Player
-  m_Shader: {fileID: -6465566751694194690, guid: 940d79357fd7a4f01a49e7247aeaa4da,
-    type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_Shader: {fileID: 4800000, guid: 37639dc9dfcb02e418de063aa605d992, type: 3}
+  m_ValidKeywords:
+  - CURVEDWORLD_BEND_TYPE_LITTLEPLANET_Y
+  m_InvalidKeywords:
+  - CURVEDWORLD_BEND_ID_1
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -125,8 +127,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Vector2_6A93A1CF: {r: 1, g: 1, b: 0, a: 0}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.25503218, g: 0.24905658, b: 1, a: 1}
+    - _Color: {r: 0.25503215, g: 0.24905655, b: 1, a: 1}
+    - _CurvedWorldBendSettings: {r: 5, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
