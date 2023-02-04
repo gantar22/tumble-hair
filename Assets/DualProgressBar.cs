@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class DualProgressBar : MonoBehaviour
 {
-    [SerializeField] float hairpercent;
-    [SerializeField] float timepercent;
+    [SerializeField] [Range(0, 1)] float hairpercent;
+    [SerializeField] [Range (0, 1)] float timepercent;
     float differencepercent;
     [SerializeField] GameObject hairbar;
     [SerializeField] GameObject timebar;
@@ -29,13 +29,13 @@ public class DualProgressBar : MonoBehaviour
             timedummybar.SetActive(true);
             timebar.SetActive(false);
             hairbar.GetComponent<Image>().color = Color.green;
-            timedummybar.GetComponent<Image>().color = Color.yellow;
+            timedummybar.GetComponent<Image>().color = new Color(111, 82, 39);
         }
         else if (timepercent > hairpercent)
         {
             timedummybar.SetActive(false);
             timebar.SetActive(true);
-            hairbar.GetComponent<Image>().color = Color.yellow;
+            hairbar.GetComponent<Image>().color = new Color(255, 255, 255);
             timebar.GetComponent<Image>().color = Color.red;
         }
 
