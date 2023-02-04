@@ -7,6 +7,8 @@ using UnityEngine;
 public class HandManager : MonoBehaviour
 {
     [SerializeField] private MasterTuningSO tuningAsset = default;
+    public Transform mapCenter = default;
+    public float mapRadius = default;
     public static HandManager I;
     public IHand[] hands = default;
 
