@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Louse : MonoBehaviour
+public interface ILouse
+{
+    public bool isAlive { get; }
+
+    public void Spawn(Vector3 position);
+}
+
+public class Louse : MonoBehaviour, ILouse
 {
     [SerializeField]
     private AudioClip m_DeathSFX;
@@ -11,6 +18,13 @@ public class Louse : MonoBehaviour
     private UnityEvent<Vector3> m_OnDeath;
     public UnityEvent<Vector3> OnDeath => m_OnDeath;
 
+    public bool isAlive { get; private set; }
+
+    public void Spawn(Vector3 position)
+    {
+        
+    }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
