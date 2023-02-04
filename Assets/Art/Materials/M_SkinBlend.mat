@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_HeightBlend
+  m_Name: M_SkinBlend
   m_Shader: {fileID: -6465566751694194690, guid: 2c507377b96cd5e43852da79829a2917,
     type: 3}
   m_ValidKeywords: []
@@ -21,6 +21,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Base_AO:
+        m_Texture: {fileID: 2800000, guid: e6f8a3d671b1d8348863d8da341508cc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Base_Albedo:
         m_Texture: {fileID: 2800000, guid: 077def221c7a9f64497d8894ec2eff4f, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -33,6 +37,26 @@ Material:
         m_Texture: {fileID: 2800000, guid: c4eadd73d607a4c4d846339f29327eec, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Base_Roughness:
+        m_Texture: {fileID: 2800000, guid: 5a0ae860bce43d14fa7ce837623f648a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Base_Smoothness:
+        m_Texture: {fileID: 2800000, guid: 5a0ae860bce43d14fa7ce837623f648a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Blue_Albedo:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Blue_Height:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Red_AO:
+        m_Texture: {fileID: 2800000, guid: e6f8a3d671b1d8348863d8da341508cc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Red_Albedo:
         m_Texture: {fileID: 2800000, guid: 7849b6a85dd2b3647844a6ce19c95fb2, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -41,8 +65,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: 467ce01298899824d91e756195e1bc4a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Red_Height:
+        m_Texture: {fileID: 2800000, guid: 88e72b914d4c76d44b80ee8eb050720e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Red_Normal:
         m_Texture: {fileID: 2800000, guid: 34ee5f90c6191db479b81ef99d6c6c22, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Red_Roughness:
+        m_Texture: {fileID: 2800000, guid: 5a0ae860bce43d14fa7ce837623f648a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Red_Smoothness:
+        m_Texture: {fileID: 2800000, guid: 5a0ae860bce43d14fa7ce837623f648a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -59,9 +95,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Base_Normal_Strength: 1
+    - _Base_Roughness_Strength: 0.5
+    - _Base_Strength: 1
+    - _Base_Tile: 300
+    - _Blend_Amount: -2
+    - _Blend_Amount_1: 1
+    - _Blue_Tile: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    - _Red_Normal_Strength: 1
+    - _Red_Roughness_Strength: 0.5
+    - _Red_Strength: 1
+    - _Red_Tile: 130
+    m_Colors:
+    - _Base_Color: {r: 1, g: 0.9105727, b: 0.865, a: 0}
+    - _Blue_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Red_Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1023180818290468061
 MonoBehaviour:
