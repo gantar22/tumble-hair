@@ -117,6 +117,11 @@ public class CharacterController : MonoBehaviour
         m_IsSliding = inSlide;
         m_SlideVector = new Vector3(m_RB.velocity.x * inSlideMult,m_RB.velocity.y,m_RB.velocity.z * inSlideMult);
 
+        if(m_SlideVector.magnitude < inSlideMult)
+        {
+            m_SlideVector *= inSlideMult / m_SlideVector.magnitude;
+        }
+
         if(m_IsSliding)
         {
             m_RB.constraints = RigidbodyConstraints.FreezeRotation;
@@ -127,4 +132,9 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+
+    public void Bounce(float inBounce)
+    {
+        m_RB.velocity += new Vector3(0f, inBounce, 0f);
+    }
 }

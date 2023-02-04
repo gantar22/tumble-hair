@@ -21,16 +21,56 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _A0_1:
+        m_Texture: {fileID: 2800000, guid: e6f8a3d671b1d8348863d8da341508cc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AO_2:
+        m_Texture: {fileID: 2800000, guid: e6f8a3d671b1d8348863d8da341508cc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Albedo_1:
+        m_Texture: {fileID: 2800000, guid: 7849b6a85dd2b3647844a6ce19c95fb2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Albedo_2_Ttexture:
+        m_Texture: {fileID: 2800000, guid: 077def221c7a9f64497d8894ec2eff4f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Mask_Texture:
+        m_Texture: {fileID: 2800000, guid: 88e72b914d4c76d44b80ee8eb050720e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_1:
+        m_Texture: {fileID: 2800000, guid: 34ee5f90c6191db479b81ef99d6c6c22, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_2:
+        m_Texture: {fileID: 2800000, guid: c4eadd73d607a4c4d846339f29327eec, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_f06a75345c95493e8822779cb757658f_Texture_1:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Smoothness_1:
+        m_Texture: {fileID: 2800000, guid: 5a0ae860bce43d14fa7ce837623f648a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Smoothness_2:
+        m_Texture: {fileID: 2800000, guid: 5a0ae860bce43d14fa7ce837623f648a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture_1:
+        m_Texture: {fileID: 2800000, guid: 7849b6a85dd2b3647844a6ce19c95fb2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture_2:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture_2_Ttexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 077def221c7a9f64497d8894ec2eff4f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -47,19 +87,26 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Frennel_Power: 0.5
+    - _Frennel_Power: 0.89
+    - _Mask_intensity: 1.83
+    - _Normal_Intensity: 1.72
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Smoothness_intensity: 0.27
     m_Colors:
-    - _Frennel_Color: {r: 1, g: 1, b: 1, a: 0}
-    - _Mask_Rotation: {r: 0, g: 0, b: 0, a: 0}
+    - _Albedo_1_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Albedo_2_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Frennel_Color: {r: 0.33962262, g: 0.18422925, b: 0.18730421, a: 0}
+    - _Frennel_Iner_Color: {r: 0.621796, g: 0.6754851, b: 0.8396226, a: 0}
+    - _Frennel_Out_Color: {r: 0.9716981, g: 0.8627799, b: 0.7471075, a: 0}
+    - _Mask_Rotation: {r: 0.5, g: 0, b: 0, a: 0}
     - _Mask_Texture_Tiling: {r: 1, g: 1, b: 0, a: 0}
-    - _Texture_1_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Texture_1_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
     - _Texture_1_Rotation: {r: 0, g: 0, b: 0, a: 0}
-    - _Texture_1_Tiling: {r: 1, g: 1, b: 0, a: 0}
-    - _Texture_2_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Texture_1_Tiling: {r: 4, g: 4, b: 0, a: 0}
+    - _Texture_2_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0}
     - _Texture_2_Rotation: {r: 0, g: 0, b: 0, a: 0}
-    - _Texture_2_Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Texture_2_Tiling: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5921380989731067963
 MonoBehaviour:
