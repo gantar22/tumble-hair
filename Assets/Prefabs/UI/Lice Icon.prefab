@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 1252970711061331545}
   - component: {fileID: 2121030644891001526}
   m_Layer: 5
-  m_Name: Lice
+  m_Name: Lice Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
