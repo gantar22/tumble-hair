@@ -452,6 +452,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: destroy
       objectReference: {fileID: 0}
+    - target: {fileID: 5426317554855989493, guid: cadb6d4b746c5c24389003d26d47c18d,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cadb6d4b746c5c24389003d26d47c18d, type: 3}
 --- !u!4 &8822714891953256301 stripped
@@ -667,6 +672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: create
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426317554855989493, guid: cadb6d4b746c5c24389003d26d47c18d,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5426317554855989499, guid: cadb6d4b746c5c24389003d26d47c18d,
         type: 3}
