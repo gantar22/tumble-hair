@@ -16,6 +16,8 @@ public class Louse : MonoBehaviour, ILouse
     [SerializeField]
     private AudioClip m_DeathSFX;
     [SerializeField]
+    private HandSummoner m_Summoner;
+    [SerializeField]
     private UnityEvent<Vector3> m_OnDeath;
     public UnityEvent<Vector3> OnDeath => m_OnDeath;
 
@@ -33,10 +35,20 @@ public class Louse : MonoBehaviour, ILouse
     {
         if (collision.collider.CompareTag("Player"))
         {
-            AudioManager.I.PlayOneShot(m_DeathSFX);
             gameObject.SetActive(false);
-            m_OnDeath?.Invoke(transform.position);
-            m_OnDeath.RemoveAllListeners();
         }
+    }
+
+    private void OnDisable()
+    {
+        m_Summoner.enabled = false;
+        AudioManager.I.PlayOneShot(m_DeathSFX);
+        m_OnDeath?.Invoke(transform.position);
+        m_OnDeath.RemoveAllListeners();
+    }
+
+    private void OnEnable()
+    {
+        m_Summoner.enabled = true;
     }
 }
