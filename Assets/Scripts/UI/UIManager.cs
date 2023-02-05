@@ -138,7 +138,8 @@ public class UIManager : MonoBehaviour
         if (m_LiceStack.Count > 0)
         {
             var icon = m_LiceStack.Pop();
-            Destroy(icon.gameObject);
+            if(icon)
+                Destroy(icon.gameObject);
         }
     }
 

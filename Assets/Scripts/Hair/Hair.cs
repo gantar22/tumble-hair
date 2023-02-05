@@ -16,6 +16,7 @@ public class Hair : MonoBehaviour, IHairFolicule
     [SerializeField] HairBone[] m_Bones;
     [SerializeField] private ParticleSystem m_DestroyParticles = default;
     [SerializeField] private ParticleSystem m_CreateParticles = default;
+    [SerializeField] private Animator m_Anim;
     public float height
     {
         get => m_Height;
@@ -53,7 +54,15 @@ public class Hair : MonoBehaviour, IHairFolicule
         m_Tip.position = m_Base.position + new Vector3(tangent.x, height * m_YScale, tangent.y);
 
         //Scale up the hair
-        m_Hair.localScale = new Vector3(m_Hair.localScale.x, height * 20f, m_Hair.localScale.z);
+        if (m_Anim)
+        {
+            if(height > .1f)
+                m_Anim.SetBool("Grow",true);
+        }
+        else
+        {
+            m_Hair.localScale = new Vector3(m_Hair.localScale.x, height * 20f, m_Hair.localScale.z);
+        }
 
         //Rotate up directio towards tip
         var direction = (m_Tip.position - m_Hair.position).normalized;
@@ -98,5 +107,7 @@ public class Hair : MonoBehaviour, IHairFolicule
     void GetScratched()
     {
         height = 0;
+        if(m_Anim)
+            m_Anim.SetBool("Grow", false);
     }
 }
