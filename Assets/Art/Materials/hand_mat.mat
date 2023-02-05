@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Guy_Mat
+  m_Name: hand_mat
   m_Shader: {fileID: 4800000, guid: 37639dc9dfcb02e418de063aa605d992, type: 3}
   m_ValidKeywords:
   - CURVEDWORLD_BEND_TYPE_LITTLEPLANET_Y
@@ -39,7 +39,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 41dd4bffa185b0947bdf2fee72faeb08, type: 3}
+        m_Texture: {fileID: 2800000, guid: d83e8008485f98949899a419bea01293, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -63,7 +63,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 41dd4bffa185b0947bdf2fee72faeb08, type: 3}
+        m_Texture: {fileID: 2800000, guid: d83e8008485f98949899a419bea01293, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
