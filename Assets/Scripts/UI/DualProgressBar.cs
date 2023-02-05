@@ -44,4 +44,14 @@ public class DualProgressBar : MonoBehaviour
         timemarker.transform.localPosition = new Vector3(((maxWidth * timepercent)-(maxWidth / 2)), 0, 0);
         hairmarker.transform.localPosition = new Vector3(((maxWidth * hairpercent) - (maxWidth / 2)), 0, 0);
     }
+
+    public void SetTime(float inPercent)
+    {
+        timepercent = inPercent;
+    }
+
+    public void SetHair(float inPercent)
+    {
+        hairpercent = inPercent;
+    }
 }
