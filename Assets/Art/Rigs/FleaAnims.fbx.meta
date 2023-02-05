@@ -12,7 +12,12 @@ ModelImporter:
   - first:
       74: 3603253102244600245
     second: Flea_Fall
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phong3
+    second: {fileID: 2100000, guid: 89b736443366cc44abbbd41c4068ec0a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
