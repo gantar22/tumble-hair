@@ -19,9 +19,9 @@ public class Hand : MonoBehaviour, IHand
     {
         m_DangerZones = GetComponentsInChildren<Collider>().Where(_ => _.gameObject.CompareTag("ScratchZone"))
             .ToArray();
-        foreach(var zone in m_DangerZones)
-            zone.enabled = false;
-        SetVisibility(false);
+        //foreach(var zone in m_DangerZones)
+        //    zone.enabled = false;
+        //SetVisibility(false);
     }
 
     void SetVisibility(bool inValue)
