@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,6 +45,14 @@ public class Louse : MonoBehaviour, ILouse
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ScratchZone"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     private void OnDisable()
     {
         m_Summoner.enabled = false;
@@ -54,7 +63,7 @@ public class Louse : MonoBehaviour, ILouse
 
     private void OnEnable()
     {
-        if (!GameManager.I.GameOver)
+        if (!(GameManager.I != null && GameManager.I.GameOver))
         {
             m_Summoner.enabled = true;
         }
