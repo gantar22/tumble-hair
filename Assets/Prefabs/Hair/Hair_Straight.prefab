@@ -375,7 +375,7 @@ MonoBehaviour:
   - {fileID: 921002548184986150}
   m_DestroyParticles: {fileID: 5125360490204407186}
   m_CreateParticles: {fileID: 2841176134319469697}
-  m_Anim: {fileID: 0}
+  m_Anim: {fileID: 8735910681858576638}
   m_Tangent: {x: 0, y: 0}
 --- !u!135 &7919211971173653838
 SphereCollider:
@@ -561,17 +561,17 @@ PrefabInstance:
     - target: {fileID: 8475932922671612032, guid: 57ee23cb2de691745a7fe1819b1a5487,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8475932922671612032, guid: 57ee23cb2de691745a7fe1819b1a5487,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8475932922671612032, guid: 57ee23cb2de691745a7fe1819b1a5487,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ee23cb2de691745a7fe1819b1a5487, type: 3}
