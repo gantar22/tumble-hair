@@ -16,17 +16,38 @@ public class GameManager : MonoBehaviour
     private Transform m_WinScreen;
     [SerializeField]
     private Transform m_LoseScreen;
-    private bool m_GameOver = false;
+    [SerializeField, Tooltip("If assigned will pop up on loading")]
+    private Transform m_TutorialScreen;
+    private bool m_GameOver = true;
     private float m_Timer;
 
     private void Awake()
     {
-        foreach (var chunk in GetComponentsInChildren<Chunk>())
+        if(m_TutorialScreen)
         {
-            chunk.Commence();
+            m_TutorialScreen.gameObject.SetActive(true);
+            Pause(true);
         }
+        else
+        {
+            Commence();
+        }
+    }
 
-        m_Timer = m_GameTime;
+    public void Commence()
+    {
+        if(m_GameOver)
+        {
+            Pause(false);
+
+            foreach (var chunk in GetComponentsInChildren<Chunk>())
+            {
+                chunk.Commence();
+            }
+
+            m_Timer = 0;
+            m_GameOver = false;
+        }
     }
 
     public void CloseApp()
@@ -43,17 +64,19 @@ public class GameManager : MonoBehaviour
     {
         if(!m_GameOver)
         {
-            if (m_Timer <= 0)
+            if (m_Timer >= m_GameTime)
             {
                 m_LoseScreen.gameObject.SetActive(true);
                 m_HUDAnim.gameObject.SetActive(false);
                 m_GameOver = true;
             }
-            m_Timer -= Time.deltaTime;
+            m_Timer += Time.deltaTime;
             m_Bar.SetTime(m_Timer/m_GameTime);
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        bool tutorialCheck = m_TutorialScreen && m_TutorialScreen.gameObject.activeSelf;
+
+        if(Input.GetKeyDown(KeyCode.Escape) && !m_GameOver && !tutorialCheck)
         {
             if(m_HUDAnim)
             {
@@ -69,13 +92,13 @@ public class GameManager : MonoBehaviour
     public void Pause(bool inValue)
     {
         m_HUDAnim.SetBool("paused", inValue);
-        if (inValue)
+       if (inValue)
        {
             Time.timeScale = 0;
        }
        else
        {
             Time.timeScale = 1;
-        }
+       }
     }
 }
