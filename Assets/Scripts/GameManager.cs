@@ -19,9 +19,12 @@ public class GameManager : MonoBehaviour
     private bool m_GameOver = false;
     private float m_Timer;
 
+    private Chunk[] m_Chunks = default;
+    
     private void Awake()
     {
-        foreach (var chunk in GetComponentsInChildren<Chunk>())
+        m_Chunks = GetComponentsInChildren<Chunk>();
+        foreach (var chunk in m_Chunks)
         {
             chunk.Commence();
         }
