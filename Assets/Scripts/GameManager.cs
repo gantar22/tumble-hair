@@ -45,14 +45,26 @@ public class GameManager : MonoBehaviour
     {
         if (!m_GameOver)
         {
-            if (m_Timer >= m_GameTime)
+            if (m_Timer >= m_GameTime + .5f)
             {
                 UIManager.I.GameOver(false);
                 m_GameOver = true;
             }
+
+            var fillQuantity = m_Chunks.Sum(_ => _.HairFill()) / m_Chunks.Length;
+            if (fillQuantity > .95f)
+            {
+                Invoke("WinGame",.75f);
+                m_GameOver = true;
+            }
             m_Timer += Time.deltaTime;
-            UIManager.I.SetHair(m_Chunks.Sum(_=>_.HairFill()) / m_Chunks.Length);
+            UIManager.I.SetHair(fillQuantity);
             UIManager.I.SetTime(m_Timer / m_GameTime);
         }
+    }
+
+    void WinGame()
+    {
+        UIManager.I.GameOver(true);
     }
 }

@@ -56,7 +56,8 @@ public class Louse : MonoBehaviour, ILouse
     private void OnDisable()
     {
         m_Summoner.enabled = false;
-        AudioManager.I.PlayOneShot(m_DeathSFX);
+        if(AudioManager.I)
+            AudioManager.I.PlayOneShot(m_DeathSFX);
         m_OnDeath?.Invoke(transform.position);
         m_OnDeath.RemoveAllListeners();
     }
