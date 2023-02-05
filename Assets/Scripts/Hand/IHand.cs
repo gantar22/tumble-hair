@@ -7,4 +7,6 @@ public interface IHand
     void Summon(Vector3 target);
     void UnSummon();
     bool activeTarget(out Vector3 target);
+
+    bool scratching { get; }
 }

@@ -11,7 +11,7 @@ public class Flea : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             var player = collision.collider.GetComponent<CharacterController>();
-            player.SpeedBoost(m_SpeedMult,m_Duration);
+            player.FleaEffect(m_Duration);
             Destroy(this.gameObject);
         }
     }

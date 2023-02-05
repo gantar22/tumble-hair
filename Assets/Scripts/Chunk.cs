@@ -26,12 +26,15 @@ public class Chunk : MonoBehaviour
 
     IEnumerator SpawnLice()
     {
+        var hairAmount = 0f;
+        var fillVel = 0f;
         var random = new Random(gameObject.GetInstanceID());
         while (true)
         {
             yield return new WaitForSeconds(1/tuningAsset.louseSpawnTickRate);
             var expectedTicks = tuningAsset.louseSpawnTime * tuningAsset.louseSpawnTickRate;
-            double p = HairFill() / expectedTicks;
+            hairAmount = Mathf.SmoothDamp(hairAmount, HairFill(), ref fillVel, 2, Mathf.Infinity,1 / tuningAsset.louseSpawnTickRate);
+            double p = hairAmount / expectedTicks;
             if (random.NextDouble() < p)
             {
                 for (int i = 0; i < lice.Length; i++)

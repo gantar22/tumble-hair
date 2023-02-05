@@ -8,18 +8,34 @@ public class Hand : MonoBehaviour, IHand
     [SerializeField] private Animator m_Animator = default;
     [SerializeField] private Transform m_Root = default;
     [SerializeField] private Collider m_DangerZone = default;
+    [SerializeField] private Renderer m_Renderer = default;
+    [SerializeField] private MasterTuningSO tuningAsset = default;
     private Vector3? target = null;
-
+    public bool scratching { get; private set; }
     private void Awake()
     {
         m_DangerZone.enabled = false;
+        SetVisibility(false);
     }
 
+    void SetVisibility(bool inValue)
+    {
+        m_Renderer.enabled = inValue;
+        m_Root.gameObject.SetActive(inValue);
+    }
+
+    void SetScratching(bool inValue)
+    {
+        m_Animator.SetBool("scratch",inValue);
+        m_DangerZone.enabled = inValue;
+        scratching = inValue;
+    }
     public void Summon(Vector3 inTarget)
     {
         target = inTarget;
-        m_Root.position = GetBaseLocation(inTarget);
-        m_Root.gameObject.SetActive(true);
+        m_Root.position = GetBaseLocation(inTarget, out var rot);
+        m_Root.rotation = rot;
+        SetVisibility(true);
         StartCoroutine(Scratch(inTarget));
     }
 
@@ -28,19 +44,23 @@ public class Hand : MonoBehaviour, IHand
         if (target.HasValue)
         {
             var oldTarget = target.Value;
-            target = null;
-            m_DangerZone.enabled = false;
+            SetScratching(false);
             StopAllCoroutines();
-            m_Animator.SetBool("scratch",false);
-            StartCoroutine(Retreat(GetBaseLocation(oldTarget)));
+            var baseLocation = GetBaseLocation(oldTarget, out var _);
+            StartCoroutine(Retreat(baseLocation));
         }
     }
 
-    Vector3 GetBaseLocation(Vector3 inTarget)
+    Vector3 GetBaseLocation(Vector3 inTarget, out Quaternion outRotation)
     {
         if (HandManager.I)
-            return (inTarget - HandManager.I.mapCenter.position).normalized * HandManager.I.mapRadius;
-        
+        {
+            var dir = (inTarget - HandManager.I.mapCenter.position).normalized;
+            outRotation = Quaternion.LookRotation(-dir);
+            return dir * HandManager.I.mapRadius;
+        }
+
+        outRotation = default;
         return Vector3.zero;
     }
     
@@ -51,23 +71,23 @@ public class Hand : MonoBehaviour, IHand
         var rootTarget = inTarget + rootFromDZ;
         while (Vector3.Distance(m_Root.position, rootTarget) > .25f)
         {
-            m_Root.position = Vector3.SmoothDamp(m_Root.position,rootTarget,ref vel,.1f,2,Time.deltaTime);
+            m_Root.position = Vector3.SmoothDamp(m_Root.position,rootTarget,ref vel,.1f,tuningAsset.handSpeed,Time.deltaTime);
             yield return null;
         }
-
     }
 
     IEnumerator Retreat(Vector3 inTarget)
     {
         yield return GoTo(inTarget);
-        m_Root.gameObject.SetActive(false);
+        SetVisibility(false);
+        target = null;
     }
     
     IEnumerator Scratch(Vector3 inTarget)
     {
         yield return GoTo(inTarget);
-        m_DangerZone.enabled = true;
-        m_Animator.SetBool("scratch",true);
+        yield return new WaitForSeconds(tuningAsset.handPauseTime);
+        SetScratching(true);
     }
     
     public bool activeTarget(out Vector3 outTarget)

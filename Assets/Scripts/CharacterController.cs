@@ -1,8 +1,19 @@
+using System;
+using System.Collections;
 using System.ComponentModel;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    enum State
+    {
+        Boost,
+        Hurt,
+        Normal,
+    }
+
+    [SerializeField] private float m_PussSpeedMult = .75f;
+    [SerializeField] private float m_FleaSpeedMult = 1.5f;
     [SerializeField] private Rigidbody m_RB = default;
 
     [SerializeField] private float m_Speed = 10f;
@@ -11,29 +22,23 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float m_Deadzone = .1f;
     [SerializeField] private float m_Drag = 3;
     [SerializeField,Range(0,1)] private float m_JumpVelFactor = .25f;
+    [SerializeField] private Transform m_Model = default;
+    
     
     [SerializeField]
     private bool m_CanJump = true;
     private float m_SpeedBoostTimer = 0f;
     private float m_SpeedBoostDuration = 0f;
-    private float m_CurrSpeed = 1f;
-    private bool m_Boost = false;
+    private Coroutine m_PussRoutine = null;
+    private Coroutine m_FleaRoutine = null;
     private bool m_IsSliding = false;
     private Vector3 m_SlideVector;
+    
 
-    private void Start()
+    void NormalMovement()
     {
-        m_CurrSpeed = m_Speed;
-    }
-
-    void Update()
-    {
-        if (m_IsSliding)//Only occurs when entering a grease puddle.
-        {
-            m_RB.velocity = m_SlideVector;
-            return;
-        }
-
+        var effectiveSpeed = (m_PussRoutine != null ? m_PussSpeedMult : 1) *
+                             (m_FleaRoutine != null ? m_FleaSpeedMult : 1) * m_Speed; 
         //Jump
         if (Input.GetKeyDown(KeyCode.Space) && m_CanJump)
         {
@@ -47,7 +52,7 @@ public class CharacterController : MonoBehaviour
         var input = Vector3.right * Input.GetAxis("Horizontal") + Vector3.forward * Input.GetAxis("Vertical");
         if (input.magnitude > m_Deadzone)
         {
-            var desiredVel = new Vector3(input.x * m_CurrSpeed, m_RB.velocity.y, input.z * m_CurrSpeed);
+            var desiredVel = new Vector3(input.x * effectiveSpeed, m_RB.velocity.y, input.z * effectiveSpeed);
             if (m_CanJump)
                 m_RB.velocity = desiredVel;
             else
@@ -59,19 +64,27 @@ public class CharacterController : MonoBehaviour
             planeVelocity = ApplyDrag(planeVelocity, m_Drag * (m_CanJump ? 1 : m_JumpVelFactor));
             m_RB.velocity = planeVelocity + Vector3.up * m_RB.velocity.y;
         }
+    }
 
-        //Speed boost
-        if(m_Boost)
+    void Update()
+    {
+        AlignModel();
+        if (m_IsSliding)//Only occurs when entering a grease puddle.
         {
-            if (m_SpeedBoostTimer >= m_SpeedBoostDuration)
-            {
-                m_Boost = false;
-                m_CurrSpeed = m_Speed;
-            }
-            else
-            {
-                m_SpeedBoostTimer += Time.deltaTime;
-            }
+            m_RB.velocity = m_SlideVector;
+        }
+        else
+        {
+            NormalMovement();
+        }
+    }
+
+    void AlignModel()
+    {
+        if (m_RB.velocity.magnitude > .01f)
+        {
+            var desiredRot = Quaternion.LookRotation(m_RB.velocity.normalized, Vector3.up);
+            m_Model.rotation = Quaternion.Slerp(m_Model.rotation, desiredRot, Time.deltaTime * 10);
         }
     }
 
@@ -104,13 +117,28 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void SpeedBoost(float inMult, float inDur)
+    public void PussEffect(float inDur)
     {
-        m_Boost = true;
-        m_SpeedBoostDuration = inDur;
-        m_SpeedBoostTimer = 0;
-        m_CurrSpeed = m_Speed * inMult;
+        m_PussRoutine = StartCoroutine(PussEffectImpl(inDur));
     }
+
+    IEnumerator PussEffectImpl(float inDur)
+    {
+        yield return new WaitForSeconds(inDur);
+        m_PussRoutine = null;
+    }
+    
+    public void FleaEffect(float inDur)
+    {
+        m_FleaRoutine = StartCoroutine(FleaEffectImpl(inDur));
+    }
+
+    IEnumerator FleaEffectImpl(float inDur)
+    {
+        yield return new WaitForSeconds(inDur);
+        m_FleaRoutine = null;
+    }
+    
 
     public void Slide(bool inSlide, float inSlideMult)
     {
@@ -121,20 +149,19 @@ public class CharacterController : MonoBehaviour
         {
             m_SlideVector *= inSlideMult / m_SlideVector.magnitude;
         }
-
-        if(m_IsSliding)
-        {
-            m_RB.constraints = RigidbodyConstraints.FreezeRotation;
-        }
-        else
-        {
-            m_RB.constraints = RigidbodyConstraints.None;
-        }
     }
 
 
     public void Bounce(float inBounce)
     {
         m_RB.velocity += new Vector3(0f, inBounce, 0f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ScratchZone"))
+        {
+            
+        }
     }
 }

@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 public class Puss : MonoBehaviour
 {
-    [SerializeField] private float m_SpeedMult = -1.5f;
     [SerializeField] private float m_Duration = .25f;
     [SerializeField]
     private UnityEvent<Puss> m_OnDeath;
@@ -14,7 +13,7 @@ public class Puss : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             var player = collision.collider.GetComponent<CharacterController>();
-            player.SpeedBoost(m_SpeedMult, m_Duration);
+            player.PussEffect(m_Duration);
             m_OnDeath?.Invoke(this);
             m_OnDeath.RemoveAllListeners();
             gameObject.SetActive(false);

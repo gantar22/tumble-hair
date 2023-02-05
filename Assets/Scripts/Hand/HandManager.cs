@@ -26,7 +26,7 @@ public class HandManager : MonoBehaviour
 
     public bool Summon(Vector3 target)
     {
-        var hand = hands.FirstOrDefault(_ => _.activeTarget(out var _));
+        var hand = hands.FirstOrDefault(_ => !_.activeTarget(out var _));
         if (hand == null)
             return false;
         if (hands.Any(_ =>
@@ -40,6 +40,7 @@ public class HandManager : MonoBehaviour
     IEnumerator SummonImpl(Vector3 location,IHand hand,float duration)
     {
         hand.Summon(location);
+        yield return new WaitUntil(() => hand.scratching);
         yield return new WaitForSeconds(duration);
         hand.UnSummon();
     }

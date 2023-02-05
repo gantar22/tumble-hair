@@ -16,9 +16,15 @@ public class MasterTuningSO : ScriptableObject
     [SerializeField, Tooltip("Expected time to spawn a hand stritch per louse")]
     public float handSummonTime = 10;
 
+    [Header("Scratch Params")]
     [SerializeField, Tooltip("The duration (seconds) of the sustain portion of the scratch animation")]
     public float handScratchDuration = 2;
 
     [SerializeField, Tooltip("Min distance different hand scratch locations.")]
     public float handZoneRadius = 10;
+
+    [SerializeField, Tooltip("Speed of incoming hand")] public float handSpeed = 20;
+
+    [SerializeField, Tooltip("Seconds spent before scratching after reaching position")]
+    public float handPauseTime = 2f;
 }
