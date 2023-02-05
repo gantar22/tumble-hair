@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Transform m_TutorialScreen;
     [SerializeField]
+    private Transform m_LiceIcon;
+    [SerializeField]
     private Animator m_HUDAnim;
     [SerializeField]
     private DualProgressBar m_Bar;
@@ -20,6 +22,7 @@ public class UIManager : MonoBehaviour
     private int m_CurrSceneID;
     [SerializeField]
     private int m_NextSceneID;
+    private Stack<Transform> m_LiceStack = new Stack<Transform>();
 
     private void Awake()
     {
@@ -122,4 +125,21 @@ public class UIManager : MonoBehaviour
     {
         GameManager.I.Commence();
     }
+
+    public void AddLice()
+    {
+        var icon = Instantiate(m_LiceIcon, m_LiceIcon.parent);
+        icon.gameObject.SetActive(true);
+       m_LiceStack.Push(icon);
+    }
+
+    public void RemoveLice()
+    {
+        if (m_LiceStack.Count > 0)
+        {
+            var icon = m_LiceStack.Pop();
+            Destroy(icon.gameObject);
+        }
+    }
+
 }

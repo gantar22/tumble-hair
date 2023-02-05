@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +9,8 @@ public interface ILouse
 
     public void Spawn(Vector3 position);
     public Vector3 position { get; }
+
+    public EnemyMovement movementcontroller { get; }
 }
 
 public class Louse : MonoBehaviour, ILouse
@@ -19,8 +20,7 @@ public class Louse : MonoBehaviour, ILouse
     [SerializeField]
     private HandSummoner m_Summoner;
     [SerializeField]
-    private UnityEvent<Vector3> m_OnDeath;
-    public UnityEvent<Vector3> OnDeath => m_OnDeath;
+    private EnemyMovement m_EnemyMovementController;
 
     public bool isAlive { get => gameObject.activeSelf;}
 
@@ -31,6 +31,8 @@ public class Louse : MonoBehaviour, ILouse
     }
 
     public Vector3 position => transform.position;
+
+    public EnemyMovement movementcontroller => m_EnemyMovementController;
 
     private void Start()
     {
@@ -44,28 +46,32 @@ public class Louse : MonoBehaviour, ILouse
             gameObject.SetActive(false);
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ScratchZone"))
         {
             gameObject.SetActive(false);
+
         }
     }
 
     private void OnDisable()
     {
-        m_Summoner.enabled = false;
-        if(AudioManager.I)
-            AudioManager.I.PlayOneShot(m_DeathSFX);
-        m_OnDeath?.Invoke(transform.position);
-        m_OnDeath.RemoveAllListeners();
+        if (GameManager.I && !GameManager.I.GameOver)
+        {
+            UIManager.I.RemoveLice();
+            m_Summoner.enabled = false;
+            m_EnemyMovementController.OnDied(transform.position);
+            if(AudioManager.I)
+                AudioManager.I.PlayOneShot(m_DeathSFX);
+        }
     }
 
     private void OnEnable()
     {
-        if (!(GameManager.I != null && GameManager.I.GameOver))
+        if (GameManager.I && !GameManager.I.GameOver)
         {
+            UIManager.I.AddLice();
             m_Summoner.enabled = true;
         }
     }

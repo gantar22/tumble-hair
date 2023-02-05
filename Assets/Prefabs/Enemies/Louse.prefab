@@ -795,9 +795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DeathSFX: {fileID: 0}
   m_Summoner: {fileID: 6342666202892454864}
-  m_OnDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  m_EnemyMovementController: {fileID: 4850688328253782201}
 --- !u!114 &6342666202892454864
 MonoBehaviour:
   m_ObjectHideFlags: 0

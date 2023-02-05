@@ -3,8 +3,6 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField]
-    private Collider m_WanderArea;
-    [SerializeField]
     private Rigidbody m_Enemy;
     [SerializeField]
     private float m_Speed;
@@ -12,13 +10,15 @@ public class EnemyMovement : MonoBehaviour
     private float m_Delay = 0f;
     private float m_Timer = 0f;
     private bool m_RunningAway = false;
+    private Collider m_WanderArea;
+    private Chunk m_Chunk;
 
-    private void Start()
+    private void Awake()
     {
-        var chunk = GetComponentInParent<Chunk>();
-        if (chunk)
+       m_Chunk = GetComponentInParent<Chunk>();
+        if (m_Chunk)
         {
-            foreach (var col in chunk.GetComponentsInChildren<Collider>())
+            foreach (var col in m_Chunk.GetComponentsInChildren<Collider>())
             {
                 if (col.isTrigger)
                 {
@@ -60,5 +60,10 @@ public class EnemyMovement : MonoBehaviour
         m_Vel = -((new Vector3(inPoint.x, m_Enemy.velocity.y, inPoint.z) - new Vector3(m_Enemy.position.x, m_Enemy.velocity.y, m_Enemy.position.z)).normalized) * m_Speed;
         m_Delay = 3f;
         m_Timer = 0;
+    }
+
+    public void OnDied(Vector3 inPoint)
+    {
+        m_Chunk.LouseDied(inPoint);
     }
 }

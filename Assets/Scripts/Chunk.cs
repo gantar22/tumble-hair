@@ -56,4 +56,13 @@ public class Chunk : MonoBehaviour
         lice = GetComponentsInChildren<ILouse>();
         liceSpawnPoints = lice.Select(_ => _.position).ToArray();
     }
+
+    public void LouseDied(Vector3 pos)
+    {
+        foreach(var louse in lice)
+        {
+            if(louse.isAlive)
+                louse.movementcontroller.MoveAwayFrom(pos);
+        }
+    }
 }

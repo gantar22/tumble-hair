@@ -20,4 +20,6 @@ public class MockLouse : MonoBehaviour, ILouse
     }
 
     public Vector3 position => m_Icon.transform.position;
+
+    public EnemyMovement movementcontroller => throw new NotImplementedException();
 }
