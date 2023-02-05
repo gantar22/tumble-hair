@@ -30,7 +30,12 @@ public class Louse : MonoBehaviour, ILouse
     }
 
     public Vector3 position => transform.position;
-    
+
+    private void Start()
+    {
+        gameObject.SetActive(false);  
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
@@ -49,6 +54,9 @@ public class Louse : MonoBehaviour, ILouse
 
     private void OnEnable()
     {
-        m_Summoner.enabled = true;
+        if (!GameManager.I.GameOver)
+        {
+            m_Summoner.enabled = true;
+        }
     }
 }

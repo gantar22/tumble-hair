@@ -13,6 +13,22 @@ public class EnemyMovement : MonoBehaviour
     private float m_Timer = 0f;
     private bool m_RunningAway = false;
 
+    private void Start()
+    {
+        var chunk = GetComponentInParent<Chunk>();
+        if (chunk)
+        {
+            foreach (var col in chunk.GetComponentsInChildren<Collider>())
+            {
+                if (col.isTrigger)
+                {
+                    m_WanderArea = col;
+                    break;
+                }
+            }
+        }
+    }
+
     void Update()
     {
         if (!m_WanderArea.bounds.Contains(m_Enemy.position) && !m_RunningAway)//Remove !m_RunningAway to stop them from leaving area.
