@@ -1298,13 +1298,13 @@ PrefabInstance:
     - target: {fileID: 7882794345092604279, guid: 12ed364f6f9c5d248b4c2580609c94dd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7882794345092604279, guid: 12ed364f6f9c5d248b4c2580609c94dd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1139607494370472006}
+      objectReference: {fileID: 1139607494422772357}
     - target: {fileID: 7882794345092604279, guid: 12ed364f6f9c5d248b4c2580609c94dd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -1313,12 +1313,12 @@ PrefabInstance:
     - target: {fileID: 7882794345092604279, guid: 12ed364f6f9c5d248b4c2580609c94dd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DisableCurrentScreen
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 7882794345092604279, guid: 12ed364f6f9c5d248b4c2580609c94dd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BasicButton, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7882794345092604279, guid: 12ed364f6f9c5d248b4c2580609c94dd,
         type: 3}
@@ -1338,23 +1338,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1139607493525268703}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7112869685372225965 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7882794345092604274, guid: 12ed364f6f9c5d248b4c2580609c94dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1139607493525268703}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1139607494370472006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7112869685372225965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 255d4f63b911f654fa973048144be1ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popuptoclose: {fileID: 1139607494422772357}
-  popuptoopen: {fileID: 0}
