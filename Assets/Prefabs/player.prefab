@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Transform: {fileID: 5933157125488102362}
-  m_Speed: 90
+  m_Speed: 120
   maxPitch: 80
   minPitch: 0
 --- !u!1 &2826204071633256792

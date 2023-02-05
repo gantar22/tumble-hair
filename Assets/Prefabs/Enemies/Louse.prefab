@@ -803,8 +803,8 @@ MonoBehaviour:
   m_SpawnSFX: {fileID: 8300000, guid: 95f320a4c5df48049bb97876afa99e4d, type: 3}
   m_Summoner: {fileID: 6342666202892454864}
   m_EnemyMovementController: {fileID: 4850688328253782201}
-  m_Animator: {fileID: 0}
-  m_DeathParticles: {fileID: 0}
+  m_Animator: {fileID: 7545707429094266673}
+  m_DeathParticles: {fileID: 4469399800100441383}
 --- !u!114 &6342666202892454864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,6 +1515,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cadb6d4b746c5c24389003d26d47c18d, type: 3}
+--- !u!198 &4469399800100441383 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5426317554855989493, guid: cadb6d4b746c5c24389003d26d47c18d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8451101873382366674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4469399800970993714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5426317553579064800, guid: cadb6d4b746c5c24389003d26d47c18d,
