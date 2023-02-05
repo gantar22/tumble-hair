@@ -5,13 +5,16 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Growing
+    second: Ungrown (1)
   - first:
       74: -335718685624835766
     second: Ungrown
   - first:
       74: -7667255415527839822
     second: Full Grown Pose
+  - first:
+      74: -4568688471195545280
+    second: Growing
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -121,7 +124,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
