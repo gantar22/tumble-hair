@@ -29,11 +29,11 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float m_Deadzone = .1f;
     [SerializeField] private float m_Drag = 3;
     [SerializeField,Range(0,1)] private float m_JumpVelFactor = .25f;
-    [SerializeField] private Transform m_Model = default;
 
     [SerializeField]
     private bool m_Grounded = true;
 
+    [SerializeField] private Camera m_Camera = default;
     [SerializeField] private CharacterModel m_FleaModel = default;
     [SerializeField] private CharacterModel m_TumbleHairModel = default;
     [SerializeField,Range(0,5)] private float m_DamageDuration = 2;
@@ -87,7 +87,9 @@ public class CharacterController : MonoBehaviour
         }
 
         //Movement
-        var input = Vector3.right * Input.GetAxis("Horizontal") + Vector3.forward * Input.GetAxis("Vertical");
+        var camRight = Vector3.ProjectOnPlane(m_Camera.transform.right,Vector3.up);
+        var camForward= Vector3.ProjectOnPlane(m_Camera.transform.forward,Vector3.up);
+        var input = camRight * Input.GetAxis("Horizontal") + camForward * Input.GetAxis("Vertical");
         if (input.magnitude > m_Deadzone)
         {
             var desiredVel = new Vector3(input.x * effectiveSpeed, m_RB.velocity.y, input.z * effectiveSpeed);
