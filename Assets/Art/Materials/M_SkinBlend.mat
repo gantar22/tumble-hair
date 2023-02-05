@@ -96,20 +96,20 @@ Material:
     m_Ints: []
     m_Floats:
     - _Base_Normal_Strength: 1
-    - _Base_Roughness_Strength: 0.99
+    - _Base_Roughness_Strength: 0.94
     - _Base_Strength: 1
-    - _Base_Tile: 300
+    - _Base_Tile: 347.3
     - _Blend_Amount: -3.1
     - _Blend_Amount_1: 1
     - _Blue_Tile: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Red_Normal_Strength: 1
-    - _Red_Roughness_Strength: 0.5
+    - _Red_Normal_Strength: 2
+    - _Red_Roughness_Strength: 0.74
     - _Red_Strength: 1
-    - _Red_Tile: 130
+    - _Red_Tile: 171.94
     m_Colors:
-    - _Base_Color: {r: 0.9150943, g: 0.7665928, b: 0.69557035, a: 0}
+    - _Base_Color: {r: 0.9137255, g: 0.8740437, b: 0.8552471, a: 0}
     - _Blue_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Red_Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

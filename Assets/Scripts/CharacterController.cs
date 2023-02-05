@@ -38,6 +38,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private CharacterModel m_TumbleHairModel = default;
     [SerializeField,Range(0,5)] private float m_DamageDuration = 2;
     [SerializeField] private float m_DamageSpeedMult = .075f;
+    [SerializeField] private AudioClip[] m_HurtSFX = default;
     
     private CharacterModel _ActiveModel;
 
@@ -206,6 +207,7 @@ public class CharacterController : MonoBehaviour
 
     IEnumerator DamageImpl()
     {
+        AudioManager.I.PlayOneShot(m_HurtSFX[(int)(UnityEngine.Random.value * m_HurtSFX.Length) % m_HurtSFX.Length]);
         activeModel.StartSquish();
         yield return new WaitForSeconds(m_DamageDuration);
         activeModel.EndSquish();

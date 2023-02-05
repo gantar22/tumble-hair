@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Transform: {fileID: 5933157125488102362}
-  m_Speed: 90
+  m_Speed: 120
   maxPitch: 80
   minPitch: 0
 --- !u!1 &2826204071633256792
@@ -1446,6 +1446,10 @@ MonoBehaviour:
   m_TumbleHairModel: {fileID: 3453424209651674166}
   m_DamageDuration: 2
   m_DamageSpeedMult: 0.075
+  m_HurtSFX:
+  - {fileID: 8300000, guid: 571a6b95a4a9433458725b2672ce092a, type: 3}
+  - {fileID: 8300000, guid: 19da7907ecc090c43b8b941965c87653, type: 3}
+  - {fileID: 8300000, guid: b03f005b9d3ae9b4097f11c306813237, type: 3}
 --- !u!54 &4982919541321004796
 Rigidbody:
   m_ObjectHideFlags: 0

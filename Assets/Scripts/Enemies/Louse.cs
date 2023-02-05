@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.PlayerLoop;
+using Random = System.Random;
 
 public interface ILouse
 {
@@ -15,12 +18,18 @@ public interface ILouse
 
 public class Louse : MonoBehaviour, ILouse
 {
+    [SerializeField] private float m_AnimSpeedMultiplier = 1;
     [SerializeField]
-    private AudioClip m_DeathSFX;
+    private AudioClip[] m_DeathSFX;
+
+    [SerializeField] private AudioClip m_SpawnSFX = default;
     [SerializeField]
     private HandSummoner m_Summoner;
     [SerializeField]
     private EnemyMovement m_EnemyMovementController;
+
+    [SerializeField] private Animator m_Animator = default;
+    [SerializeField] private ParticleSystem m_DeathParticles = default;
 
     public bool isAlive { get => gameObject.activeSelf;}
 
@@ -59,11 +68,12 @@ public class Louse : MonoBehaviour, ILouse
     {
         if (GameManager.I && !GameManager.I.GameOver)
         {
+            m_DeathParticles.Play();
             UIManager.I.RemoveLice();
             m_Summoner.enabled = false;
             m_EnemyMovementController.OnDied(transform.position);
             if(AudioManager.I)
-                AudioManager.I.PlayOneShot(m_DeathSFX);
+                AudioManager.I.PlayOneShot(m_DeathSFX[(int)(UnityEngine.Random.value * m_DeathSFX.Length) % m_DeathSFX.Length]);
         }
     }
 
@@ -71,8 +81,18 @@ public class Louse : MonoBehaviour, ILouse
     {
         if (GameManager.I && !GameManager.I.GameOver)
         {
+            if (AudioManager.I)
+            {
+                AudioManager.I.PlayOneShot(m_SpawnSFX);
+            }
             UIManager.I.AddLice();
             m_Summoner.enabled = true;
         }
+    }
+
+    private void Update()
+    {
+        m_Animator.SetBool("IsMoving",m_EnemyMovementController.enemy.velocity.magnitude > .2f);
+        m_Animator.SetFloat("speed",m_EnemyMovementController.enemy.velocity.magnitude * m_AnimSpeedMultiplier);
     }
 }
