@@ -68,7 +68,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d6b39375eaf694245b3f8ea026e4f9cf, type: 2}
+  m_Motion: {fileID: 7400000, guid: 09397bb2998841149abe1c2d5b3ef860, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -80,7 +80,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KinkyHair
+  m_Name: Straight Hair
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Grow
@@ -148,7 +148,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 108f76cde9f1476479df1bda98a77c04, type: 2}
+  m_Motion: {fileID: 7400000, guid: 17a2d8b3f0886434b9859b0519507747, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -203,7 +203,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7cd7fe4870bfd384abb86cb53305b2eb, type: 2}
+  m_Motion: {fileID: 7400000, guid: 26eae704fcb73094fa4adfeab25408e1, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
