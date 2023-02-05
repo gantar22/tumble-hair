@@ -1,20 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Hand : MonoBehaviour, IHand
 {
     [SerializeField] private Animator m_Animator = default;
     [SerializeField] private Transform m_Root = default;
-    [SerializeField] private Collider m_DangerZone = default;
+    [SerializeField] private Transform m_TargetZone = default;
+    private Collider[] m_DangerZones = default;
     [SerializeField] private Renderer m_Renderer = default;
     [SerializeField] private MasterTuningSO tuningAsset = default;
     private Vector3? target = null;
     public bool scratching { get; private set; }
+    
     private void Awake()
     {
-        m_DangerZone.enabled = false;
+        m_DangerZones = GetComponentsInChildren<Collider>().Where(_ => _.gameObject.CompareTag("ScratchZone"))
+            .ToArray();
+        foreach(var zone in m_DangerZones)
+            zone.enabled = false;
         SetVisibility(false);
     }
 
@@ -27,7 +33,8 @@ public class Hand : MonoBehaviour, IHand
     void SetScratching(bool inValue)
     {
         m_Animator.SetBool("scratch",inValue);
-        m_DangerZone.enabled = inValue;
+        foreach(var zone in m_DangerZones)
+            zone.enabled = inValue;
         scratching = inValue;
     }
     public void Summon(Vector3 inTarget)
@@ -67,7 +74,7 @@ public class Hand : MonoBehaviour, IHand
     IEnumerator GoTo(Vector3 inTarget)
     {
         var vel = Vector3.zero;
-        var rootFromDZ = m_Root.position - m_DangerZone.transform.position;
+        var rootFromDZ = m_Root.position - m_TargetZone.transform.position;
         var rootTarget = inTarget + rootFromDZ;
         while (Vector3.Distance(m_Root.position, rootTarget) > .25f)
         {
