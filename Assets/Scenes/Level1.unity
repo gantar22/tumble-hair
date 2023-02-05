@@ -202,8 +202,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Louse
       objectReference: {fileID: 0}
+    - target: {fileID: 8025096976618894791, guid: d0d3d18f298562b4593622dea7063f48,
+        type: 3}
+      propertyPath: m_Animator
+      value: 
+      objectReference: {fileID: 108766435}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0d3d18f298562b4593622dea7063f48, type: 3}
+--- !u!95 &108766435 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7545707429094266673, guid: d0d3d18f298562b4593622dea7063f48,
+    type: 3}
+  m_PrefabInstance: {fileID: 108766434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &382899178
 PrefabInstance:
   m_ObjectHideFlags: 0

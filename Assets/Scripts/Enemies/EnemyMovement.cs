@@ -4,6 +4,8 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody m_Enemy;
+
+    public Rigidbody enemy => m_Enemy;
     [SerializeField]
     private float m_Speed;
     private Vector3 m_Vel;
