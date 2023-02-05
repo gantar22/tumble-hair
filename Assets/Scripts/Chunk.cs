@@ -19,7 +19,7 @@ public class Chunk : MonoBehaviour
         StartCoroutine(SpawnLice());
     }
 
-    float HairFill()//0-1
+    public float HairFill()//0-1
     {
         return folicules.Sum(_=>_.height) / folicules.Length;
     }

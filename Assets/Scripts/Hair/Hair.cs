@@ -1,3 +1,4 @@
+using System;
 using Unity.Collections;
 using UnityEngine;
 
@@ -13,7 +14,8 @@ public class Hair : MonoBehaviour, IHairFolicule
     [SerializeField] Transform m_Nub;
     [SerializeField] Transform m_Hair;
     [SerializeField] HairBone[] m_Bones;
-
+    [SerializeField] private ParticleSystem m_DestroyParticles = default;
+    [SerializeField] private ParticleSystem m_CreateParticles = default;
     public float height
     {
         get => m_Height;
@@ -67,12 +69,34 @@ public class Hair : MonoBehaviour, IHairFolicule
         {
             m_Nub.gameObject.SetActive(true);
             m_Hair.gameObject.SetActive(false);
-            return;
         }
         else
         {
+            if (m_Nub.gameObject.activeSelf)
+            {
+                m_CreateParticles.Play();
+            }
+
             m_Nub.gameObject.SetActive(false);
             m_Hair.gameObject.SetActive(true);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ScratchZone"))
+        {
+            if (m_DestroyParticles != null)
+            {
+                m_DestroyParticles.Play();
+            }
+
+            Invoke("GetScratched", .25f);
+        }
+    }
+
+    void GetScratched()
+    {
+        height = 0;
     }
 }

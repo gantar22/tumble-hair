@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
             }
             m_Timer += Time.deltaTime;
             m_Bar.SetTime(m_Timer/m_GameTime);
+            m_Bar.SetHair(m_Chunks.Sum(_=>_.HairFill()) / m_Chunks.Length);
         }
 
         bool tutorialCheck = m_TutorialScreen && m_TutorialScreen.gameObject.activeSelf;
