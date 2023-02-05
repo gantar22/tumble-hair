@@ -3,15 +3,22 @@ using System.Collections;
 using System.ComponentModel;
 using UnityEngine;
 
+public abstract class CharacterModel : MonoBehaviour
+{
+    public abstract void Show();
+    public abstract void Hide();
+    public abstract void SetSpeed(Vector3 inVel);
+    public abstract void SetSliding(bool inIsSliding);
+    public abstract void StartJump();
+    public abstract void StartFall();
+    public abstract void EndFall();
+
+    public abstract void StartSquish();
+    public abstract void EndSquish();
+}
+
 public class CharacterController : MonoBehaviour
 {
-    enum State
-    {
-        Boost,
-        Hurt,
-        Normal,
-    }
-
     [SerializeField] private float m_PussSpeedMult = .75f;
     [SerializeField] private float m_FleaSpeedMult = 1.5f;
     [SerializeField] private Rigidbody m_RB = default;
@@ -23,28 +30,59 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float m_Drag = 3;
     [SerializeField,Range(0,1)] private float m_JumpVelFactor = .25f;
     [SerializeField] private Transform m_Model = default;
-    
-    
+
     [SerializeField]
-    private bool m_CanJump = true;
-    private float m_SpeedBoostTimer = 0f;
-    private float m_SpeedBoostDuration = 0f;
+    private bool m_Grounded = true;
+
+    [SerializeField] private CharacterModel m_FleaModel = default;
+    [SerializeField] private CharacterModel m_TumbleHairModel = default;
+    [SerializeField,Range(0,5)] private float m_DamageDuration = 2;
+    [SerializeField] private float m_DamageSpeedMult = .075f;
+    
+    private CharacterModel _ActiveModel;
+
+    private CharacterModel activeModel
+    {
+        get => _ActiveModel;
+        set
+        {
+            if (value != _ActiveModel)
+            {
+                if(_ActiveModel != null)
+                    _ActiveModel.Hide();
+                _ActiveModel = value;
+                if(_ActiveModel != null)
+                    _ActiveModel.Show();
+            }
+        }
+    }
     private Coroutine m_PussRoutine = null;
     private Coroutine m_FleaRoutine = null;
+    private Coroutine m_DamageRoutine = null;
     private bool m_IsSliding = false;
     private Vector3 m_SlideVector;
-    
+
+    private void Awake()
+    {
+        activeModel = m_TumbleHairModel;
+    }
 
     void NormalMovement()
     {
-        var effectiveSpeed = (m_PussRoutine != null ? m_PussSpeedMult : 1) *
-                             (m_FleaRoutine != null ? m_FleaSpeedMult : 1) * m_Speed; 
+        var effectiveSpeed = 
+            (m_PussRoutine   != null ? m_PussSpeedMult   : 1) *
+            (m_FleaRoutine   != null ? m_FleaSpeedMult   : 1) *
+            (m_DamageRoutine != null ? m_DamageSpeedMult : 1) * 
+             m_Speed;
+        
         //Jump
-        if (Input.GetKeyDown(KeyCode.Space) && m_CanJump)
+        if (Input.GetKeyDown(KeyCode.Space) && m_Grounded)
         {
             m_RB.velocity += new Vector3(0f, m_Jump, 0f);
-        } else if (m_RB.velocity.y < -.1f)
+            activeModel.StartJump();
+        } else if (m_RB.velocity.y < -.1f && !m_Grounded)
         {
+            activeModel.StartFall();
             m_RB.velocity += Physics.gravity * (Time.deltaTime * m_RB.mass);
         }
 
@@ -53,7 +91,7 @@ public class CharacterController : MonoBehaviour
         if (input.magnitude > m_Deadzone)
         {
             var desiredVel = new Vector3(input.x * effectiveSpeed, m_RB.velocity.y, input.z * effectiveSpeed);
-            if (m_CanJump)
+            if (m_Grounded)
                 m_RB.velocity = desiredVel;
             else
                 m_RB.velocity = Vector3.Lerp(m_RB.velocity, desiredVel, m_JumpVelFactor);
@@ -61,14 +99,13 @@ public class CharacterController : MonoBehaviour
         else
         {
             var planeVelocity = Vector3.ProjectOnPlane(m_RB.velocity,Vector3.up);
-            planeVelocity = ApplyDrag(planeVelocity, m_Drag * (m_CanJump ? 1 : m_JumpVelFactor));
+            planeVelocity = ApplyDrag(planeVelocity, m_Drag * (m_Grounded ? 1 : m_JumpVelFactor));
             m_RB.velocity = planeVelocity + Vector3.up * m_RB.velocity.y;
         }
     }
 
     void Update()
     {
-        AlignModel();
         if (m_IsSliding)//Only occurs when entering a grease puddle.
         {
             m_RB.velocity = m_SlideVector;
@@ -77,16 +114,10 @@ public class CharacterController : MonoBehaviour
         {
             NormalMovement();
         }
+        activeModel.SetSpeed(m_RB.velocity);
     }
 
-    void AlignModel()
-    {
-        if (m_RB.velocity.magnitude > .01f)
-        {
-            var desiredRot = Quaternion.LookRotation(m_RB.velocity.normalized, Vector3.up);
-            m_Model.rotation = Quaternion.Slerp(m_Model.rotation, desiredRot, Time.deltaTime * 10);
-        }
-    }
+
 
     Vector3 ApplyDrag(Vector3 velocity,float drag)
     {
@@ -105,7 +136,9 @@ public class CharacterController : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            m_CanJump = true;
+            if(!m_Grounded)
+                activeModel.EndFall();
+            m_Grounded = true;
         }
     }
 
@@ -113,7 +146,7 @@ public class CharacterController : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            m_CanJump = false;
+            m_Grounded = false;
         }
     }
 
@@ -135,7 +168,9 @@ public class CharacterController : MonoBehaviour
 
     IEnumerator FleaEffectImpl(float inDur)
     {
+        activeModel = m_FleaModel;
         yield return new WaitForSeconds(inDur);
+        activeModel = m_TumbleHairModel;
         m_FleaRoutine = null;
     }
     
@@ -143,6 +178,7 @@ public class CharacterController : MonoBehaviour
     public void Slide(bool inSlide, float inSlideMult)
     {
         m_IsSliding = inSlide;
+        activeModel.SetSliding(inSlide);
         m_SlideVector = new Vector3(m_RB.velocity.x * inSlideMult,m_RB.velocity.y,m_RB.velocity.z * inSlideMult);
 
         if(m_SlideVector.magnitude < inSlideMult)
@@ -155,13 +191,30 @@ public class CharacterController : MonoBehaviour
     public void Bounce(float inBounce)
     {
         m_RB.velocity += new Vector3(0f, inBounce, 0f);
+        activeModel.StartJump();
+    }
+
+    public void TakeDamage()
+    {
+        if(m_FleaRoutine != null)   
+            StopCoroutine(m_FleaRoutine);
+        activeModel = m_TumbleHairModel;
+        m_DamageRoutine = StartCoroutine(DamageImpl());
+    }
+
+    IEnumerator DamageImpl()
+    {
+        activeModel.StartSquish();
+        yield return new WaitForSeconds(m_DamageDuration);
+        activeModel.EndSquish();
+        m_DamageRoutine = null;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ScratchZone"))
         {
-            
+            TakeDamage();    
         }
     }
 }
