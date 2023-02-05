@@ -35,6 +35,7 @@ public class EnemyMovement : MonoBehaviour
         }
 
         m_Enemy.velocity = m_Vel;
+        transform.LookAt(transform.position + m_Enemy.velocity);
     }
 
     public void MoveAwayFrom(Vector3 inPoint)
