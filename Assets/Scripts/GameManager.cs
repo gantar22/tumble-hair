@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField, Tooltip("In seconds")]
     private float m_GameTime;
+
+    private float m_PercentRequired = 1;
     private bool m_GameOver = true;
     public bool GameOver => m_GameOver;
     private float m_Timer;
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
             }
 
             var fillQuantity = m_Chunks.Sum(_ => _.HairFill()) / m_Chunks.Length;
+            fillQuantity /= m_PercentRequired;
             if (fillQuantity > .95f)
             {
                 Invoke("WinGame",.75f);
