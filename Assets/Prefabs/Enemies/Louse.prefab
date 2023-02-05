@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4850688328253782206}
   - component: {fileID: 4850688328253782201}
   - component: {fileID: 8025096976618894791}
+  - component: {fileID: 6342666202892454864}
   m_Layer: 0
   m_Name: Louse
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4850688328253782203}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.33599997, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
@@ -144,3 +145,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DeathSFX: {fileID: 0}
+  m_Summoner: {fileID: 6342666202892454864}
+  m_OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6342666202892454864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4850688328253782203}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4a064a67ecedb4c8ee4b3604405187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tuningAsset: {fileID: 11400000, guid: b2ffca6a81c48a346b2b6aca10933084, type: 2}
