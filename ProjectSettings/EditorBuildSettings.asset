@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1.unity
     guid: 45adf40338f77404982e68c9c65a14e9
   - enabled: 0
+    path: Assets/Scenes/Kellie_LD1 Level 2.unity
+    guid: 4a89c7f496eaa384bb8026497f5a6b31
+  - enabled: 0
     path: Assets/Scenes/Carters_playground.unity
     guid: 366ae1a3ad72a0a4f95cefe31c51f076
   - enabled: 0

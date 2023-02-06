@@ -17,6 +17,7 @@ public class HandManager : MonoBehaviour
         if (I == null)
         {
             I = this;
+            hands = GetComponentsInChildren<IHand>();
         }
         else
         {

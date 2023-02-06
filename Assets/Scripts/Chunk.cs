@@ -12,10 +12,21 @@ public class Chunk : MonoBehaviour
 
     public ILouse[] lice = default;
     private Vector3[] liceSpawnPoints = default;
+
+    private bool init = false;
     
+    public void Awake()
+    {
+        folicules = GetComponentsInChildren<IHairFolicule>();
+        lice = GetComponentsInChildren<ILouse>();
+        liceSpawnPoints = lice.Select(_ => _.position).ToArray();
+        init = true;
+    }
 
     public void Commence()
     {
+        if(!init)
+            Awake();
         StartCoroutine(SpawnLice());
     }
 

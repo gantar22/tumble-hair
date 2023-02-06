@@ -7,7 +7,7 @@ public class HairSystem : MonoBehaviour
 {
     [SerializeField] private IHairFolicule[] m_Hairs = default;
 
-    private void OnValidate()
+    private void Awake()
     {
         m_Hairs = GetComponentsInChildren<IHairFolicule>();
     }
