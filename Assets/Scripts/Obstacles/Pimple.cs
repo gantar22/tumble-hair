@@ -11,6 +11,7 @@ public class Pimple : MonoBehaviour
     [SerializeField] private int m_Limit;
     [SerializeField] private Transform m_SpawnPoint;
     [SerializeField] private float m_SpawnVel;
+    [SerializeField] private float m_SpawnVelUp = 10;
     [SerializeField] private float m_AnimationTime = 1f;
     [SerializeField] private float m_MaxHeight = 12f;
     private List<Puss> m_ActivePuss = new List<Puss>();
@@ -62,7 +63,7 @@ public class Pimple : MonoBehaviour
         puss.OnDeath.AddListener(OnDeath);
         puss.transform.position = m_SpawnPoint.position;
         puss.gameObject.SetActive(true);
-        puss.GetComponent<Rigidbody>().velocity = inDirection * inSpeed;
+        puss.GetComponent<Rigidbody>().velocity = new Vector3(inDirection.x,m_SpawnVelUp, inDirection.z) * inSpeed;
     }
 
     private void OnDeath(Puss inObject)
@@ -97,7 +98,7 @@ public class Pimple : MonoBehaviour
         {
             m_AnimationTimer = 0f;
             transform.localScale = m_MaxScale;
-            Spawn(new Vector3(Random.Range(-m_SpawnRadius, m_SpawnRadius), 2f, Random.Range(-m_SpawnRadius, m_SpawnRadius)), m_SpawnVel);
+            Spawn(new Vector3(Random.Range(-m_SpawnRadius, m_SpawnRadius), 1f, Random.Range(-m_SpawnRadius, m_SpawnRadius)), m_SpawnVel);
             m_Pop = false;
             m_Burst = true;//Activate Burst animation
         }

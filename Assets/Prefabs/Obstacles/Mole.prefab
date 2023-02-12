@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 827681824402412821}
   - component: {fileID: 4837404564704390653}
   - component: {fileID: 827681824402412823}
-  - component: {fileID: 827681824402412816}
   - component: {fileID: 827681824402412820}
   - component: {fileID: 4580489851587329117}
+  - component: {fileID: 4118598611643653824}
   m_Layer: 0
   m_Name: Mole
   m_TagString: Ground
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 827681824402412817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.52, y: -0.02, z: -3.5093093}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 50, y: 10, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,19 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &827681824402412816
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 827681824402412817}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.06, y: 0.06, z: 0.06}
-  m_Center: {x: 0, y: 0.02, z: 0}
 --- !u!114 &827681824402412820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Bounce: 10
+  m_MinScale: 0.5
+  m_AnimTime: 0.25
 --- !u!114 &4580489851587329117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,3 +115,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scale: 1
   visualizeInEditor: 1
+--- !u!64 &4118598611643653824
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827681824402412817}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3411995474198805789, guid: d37fdb41cf0a0d04d89b6f383ec129ac, type: 3}
