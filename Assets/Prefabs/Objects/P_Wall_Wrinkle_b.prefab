@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3289941177088937495}
   m_Layer: 0
   m_Name: P_Wall_Wrinkle_b
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,8 +127,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1740748287208203027}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &4853429780335007909
-CapsuleCollider:
+--- !u!64 &6614733631968908687
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,10 +137,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.1
-  m_Height: 10.68
-  m_Direction: 2
-  m_Center: {x: 0.0066683292, y: 0.48628694, z: 0.00023543835}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 9fa9bf0f61998b044bbe9b421283d16c, type: 2}
 --- !u!114 &649860398593138034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PolyMesh:
-    name: PolybrushMesh-113102
+    name: PolybrushMesh38150
     vertices:
     - {x: -1.272834, y: 0.4242395, z: -0.39081}
     - {x: -1.3122281, y: 0.0000001335144, z: -1.5077418}

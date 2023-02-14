@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Band_Aid
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b18e4fc964f26304e9662ff1ba5497c3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b18e4fc964f26304e9662ff1ba5497c3, type: 3}
 --- !u!1 &8154583056377684900 stripped
